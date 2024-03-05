@@ -10,8 +10,7 @@ To execute a Spring Boot example application, you need to run a java file named 
 
 
 ### References
-* [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#legal)
-* [Spring Boot Docs](https://docs.spring.io/spring-boot/docs/)
+* [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/)
 * [Maven Documentation](https://maven.apache.org/guides/index.html)
 * [Maven Repository](https://mvnrepository.com/)
 

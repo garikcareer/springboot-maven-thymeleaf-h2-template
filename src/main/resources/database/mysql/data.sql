@@ -1,0 +1,10 @@
+INSERT IGNORE INTO company (name, location) VALUES ('Company1', 'New York');
+INSERT IGNORE INTO company (name, location) VALUES ('Company2', 'Los Angeles');
+INSERT IGNORE INTO company (name, location) VALUES ('Company3', 'Chicago');
+INSERT IGNORE INTO company (name, location) VALUES ('Company4', 'San Diego');
+INSERT IGNORE INTO company (name, location) VALUES ('Company5', 'Seattle');
+INSERT IGNORE INTO company (name, location) VALUES ('Company6', 'Houston');
+INSERT IGNORE INTO company (name, location) VALUES ('Company7', 'San Francisco');
+INSERT IGNORE INTO company (name, location) VALUES ('Company8', 'Dallas');
+INSERT IGNORE INTO company (name, location) VALUES ('Company9', 'Boston');
+INSERT IGNORE INTO company (name, location) VALUES ('Company10', 'Miami');
