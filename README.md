@@ -1,16 +1,15 @@
 # Spring Boot Application Example
-A simple application to demonstrate on how Spring Boot works using spring boot starters with maven dependencies.
+A simple CompanyCompass web application to demonstrate on how Spring Boot works using spring boot starters with maven dependencies.
 
 # Getting Started
 #### Ensure all maven modules are installed and the project is fully indexed before executing.
-#### Use supported Java JDK for the project.
+#### Use latest JDK version (JDK 21) for the project.
 
 To execute a Spring Boot example application, you need to run a java file named Application.java
 (Path location from source project: **com/example/springbootexample/Application.java**)
 
-
 ### References
-* [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/)
-* [Maven Documentation](https://maven.apache.org/guides/index.html)
+* [Maven](https://maven.apache.org/)
 * [Maven Repository](https://mvnrepository.com/)
-
+* [Spring](https://spring.io/)
+* [Thymeleaf](https://www.thymeleaf.org/)

@@ -7,18 +7,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class IndexController {
+public class MainController {
     @GetMapping("/")
     @ModelAttribute
     public ModelAndView index(Model model) {
         model.addAttribute("content", "index");
-        return new ModelAndView("layout");
-    }
-
-    @GetMapping("/home")
-    @ModelAttribute
-    public ModelAndView home(Model model) {
-        model.addAttribute("content", "index");
+        model.addAttribute("pageTitle", "Home");
         return new ModelAndView("layout");
     }
 
@@ -26,6 +20,15 @@ public class IndexController {
     @ModelAttribute
     public ModelAndView about(Model model) {
         model.addAttribute("content", "about");
+        model.addAttribute("pageTitle", "About");
+        return new ModelAndView("layout");
+    }
+
+    @GetMapping("/contact")
+    @ModelAttribute
+    public ModelAndView contact(Model model) {
+        model.addAttribute("content", "contact");
+        model.addAttribute("pageTitle", "Contact");
         return new ModelAndView("layout");
     }
 }

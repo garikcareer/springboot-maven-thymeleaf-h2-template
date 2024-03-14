@@ -21,6 +21,7 @@ public class CompanyController {
     public ModelAndView company(Model model) {
         List<Company> companies = companyService.getCompanies();
         model.addAttribute("content", "company");
+        model.addAttribute("pageTitle", "Companies");
         model.addAttribute("companyList", companies);
         return new ModelAndView("layout");
     }
