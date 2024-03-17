@@ -12,4 +12,5 @@ To execute a Spring Boot example application, you need to run a java file named 
 * [Maven](https://maven.apache.org/)
 * [Maven Repository](https://mvnrepository.com/)
 * [Spring](https://spring.io/)
+* [Flyway](https://flywaydb.org/)
 * [Thymeleaf](https://www.thymeleaf.org/)
