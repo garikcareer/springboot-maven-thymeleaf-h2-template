@@ -1,6 +1,6 @@
-package com.example.springbootexample.service;
+package com.example.companycompass.service;
 
-import com.example.springbootexample.model.Company;
+import com.example.companycompass.model.Company;
 
 import java.util.List;
 

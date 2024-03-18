@@ -13,7 +13,7 @@
 
     <!--	Project Details	-->
     <name>spring-boot-example</name>
-    <artifactId>spring-boot-example</artifactId>
+    <artifactId>company-compass</artifactId>
     <description>An example project with spring boot</description>
 
     <!--	General Properties	-->

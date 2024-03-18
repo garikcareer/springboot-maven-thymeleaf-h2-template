@@ -1,5 +1,5 @@
-# Spring Boot Application Example
-A simple CompanyCompass web application to demonstrate on how Spring Boot works using spring boot starters with maven dependencies.
+# CompanyCompass Web Application 
+A simple web application to demonstrate on how Spring Boot works using spring boot starters with maven dependencies.
 
 # Getting Started
 #### Ensure all maven modules are installed and the project is fully indexed before executing.

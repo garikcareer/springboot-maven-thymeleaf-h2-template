@@ -1,7 +1,7 @@
-package com.example.springbootexample.controller;
+package com.example.companycompass.controller;
 
-import com.example.springbootexample.model.Company;
-import com.example.springbootexample.service.CompanyService;
+import com.example.companycompass.model.Company;
+import com.example.companycompass.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

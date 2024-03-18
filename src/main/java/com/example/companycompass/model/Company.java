@@ -1,4 +1,4 @@
-package com.example.springbootexample.model;
+package com.example.companycompass.model;
 
 import jakarta.persistence.*;
 

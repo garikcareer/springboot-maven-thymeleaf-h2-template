@@ -1,4 +1,4 @@
-package com.example.springbootexample.controller;
+package com.example.companycompass.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
