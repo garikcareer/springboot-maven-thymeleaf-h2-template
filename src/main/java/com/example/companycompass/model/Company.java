@@ -3,19 +3,21 @@ package com.example.companycompass.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name= "company")
+@Table(name = "company")
 public class Company {
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "location")
     private String location;
 
-    public long getId(){
+    public long getId() {
         return id;
     }
 
-    public void setId(long id){
+    public void setId(long id) {
         this.id = id;
     }
 
