@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -22,6 +23,28 @@ public class CompanyController {
         List<Company> companies = companyService.getCompanies();
         model.addAttribute("content", "company");
         model.addAttribute("pageTitle", "Companies");
+        model.addAttribute("companyList", companies);
+        return new ModelAndView("layout");
+    }
+
+    @DeleteMapping("/delete/{companyId}")
+    public ModelAndView deleteCompany(@PathVariable Long companyId, RedirectAttributes redirectAttributes, Model model) {
+
+        try {
+            if (companyService.existsById(companyId)) {
+                companyService.deleteCompanyById(companyId);
+                redirectAttributes.addFlashAttribute("successMessage", "Company deleted successfully");
+            }
+            else {
+                redirectAttributes.addFlashAttribute("errorMessage", "Company not found");
+            }
+        }
+        catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Failed to delete company: " + e.getMessage());
+        }
+        model.addAttribute("content", "company");
+        model.addAttribute("pageTitle", "Companies");
+        List<Company> companies = companyService.getCompanies();
         model.addAttribute("companyList", companies);
         return new ModelAndView("layout");
     }

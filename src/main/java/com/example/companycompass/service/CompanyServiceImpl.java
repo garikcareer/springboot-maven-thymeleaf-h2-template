@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CompanyServiceImpl implements CompanyService{
@@ -40,5 +41,11 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public void deleteCompanyById(Long companyId) {
         companyRepository.deleteById(companyId);
+    }
+
+    @Override
+    public boolean existsById(Long companyId){
+        Optional<Company> companyOptional = companyRepository.findById(companyId);
+        return companyOptional.isPresent();
     }
 }
