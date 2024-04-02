@@ -19,12 +19,43 @@
                         <td th:text="${company.name}"></td>
                         <td th:text="${company.location}"></td>
                         <td>
-                            <button th:onclick="|editCompany('${company.id}')|">Edit</button>
-                            <button th:onclick="|deleteCompany('${company.id}')|">Delete</button>
+                            <button class="btn btn-primary edit-company-btn" data-toggle="modal" data-target="#editCompanyModal" data-company-id='${company.id}'>Edit</button>
+<!--                            <button th:onclick="|editCompany('${company.id}')|">Edit</button>-->
+                            <button class="btn btn-danger" th:onclick="|deleteCompany('${company.id}')|">Delete</button>
                         </td>
                     </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editCompanyModalLabel">Edit Company</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form to edit company information -->
+                            <form id="editCompanyForm">
+                                <div class="form-group">
+                                    <label for="companyName">Company Name</label>
+                                    <input type="text" class="form-control" id="companyName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="companyLocation">Company Location</label>
+                                    <input type="text" class="form-control" id="companyLocation">
+                                </div>
+                                <input type="hidden" id="companyId">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="saveChangesBtn" >Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="container mt-4" th:if="${#lists.isEmpty(companyList)}">
                 <p>Add your first company here!</p>
