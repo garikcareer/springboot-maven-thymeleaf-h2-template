@@ -27,6 +27,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="container mt-4" th:if="${#lists.isEmpty(companyList)}">
+                <p>Add your first company here!</p>
+            </div>
             <div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -57,18 +60,36 @@
                     </div>
                 </div>
             </div>
-            <div class="container mt-4" th:if="${#lists.isEmpty(companyList)}">
-                <p>Add your first company here!</p>
-            </div>
         </div>
     </div>
 </div>
 
 <script th:inline="javascript">
-    function editCompany(companyId) {
-        // Redirect to edit page with company ID
-        window.location.href = '/web/company/edit/' + companyId;
-    }
+    $(document).ready(function() {
+        // Event handler for clicking the "Edit" button
+        $('.edit-company-btn').click(function() {
+            // Extract company ID from the data attribute
+            var companyId = $(this).data('company-id');
+
+            // Fetch company information using companyId (you need to implement this)
+
+            // Populate form fields in the modal with company information
+            $('#companyId').val(companyId);
+            // Example: $('#companyName').val(company.name);
+
+            // Open the modal
+            $('#editCompanyModal').modal('show');
+        });
+
+        // Event handler for submitting the form in the modal
+        $('#saveChangesBtn').click(function() {
+            // Handle form submission (you need to implement this)
+            // Example: var companyId = $('#companyId').val();
+            // Example: var newName = $('#companyName').val();
+            // Example: var newLocation = $('#companyLocation').val();
+            // Example: $.post('/update-company', { id: companyId, name: newName, location: newLocation }, function(response) { ... });
+        });
+    });
 
     function deleteCompany(companyId) {
         if (confirm('Are you sure you want to delete this company?')) {
