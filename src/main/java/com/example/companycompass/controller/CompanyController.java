@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping(path="/web/company")
+@RequestMapping(path = "/web/company")
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
@@ -33,12 +33,10 @@ public class CompanyController {
             if (companyService.existsById(companyId)) {
                 companyService.deleteCompanyById(companyId);
                 redirectAttributes.addFlashAttribute("successMessage", "Company deleted successfully");
-            }
-            else {
+            } else {
                 redirectAttributes.addFlashAttribute("errorMessage", "Company not found");
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Failed to delete company: " + e.getMessage());
         }
         model.addAttribute("content", "company");
@@ -49,18 +47,16 @@ public class CompanyController {
     }
 
     @GetMapping("/edit/{companyId}")
-    public ModelAndView editCompany(@PathVariable Long companyId, RedirectAttributes redirectAttributes, Model model){
+    public ModelAndView editCompany(@PathVariable Long companyId, RedirectAttributes redirectAttributes, Model model) {
         Company company = new Company();
         try {
             if (companyService.existsById(companyId)) {
                 companyService.updateCompany(company, companyId);
                 redirectAttributes.addFlashAttribute("successMessage", "Company was edited successfully");
-            }
-            else {
+            } else {
                 redirectAttributes.addFlashAttribute("errorMessage", "Company does not exist");
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Failed to edit company: " + e.getMessage());
         }
         model.addAttribute("content", "company");
