@@ -27,6 +27,23 @@ public class CompanyController {
         return new ModelAndView("layout");
     }
 
+    @GetMapping("/get/{companyId}")
+    public ModelAndView companyGet(@PathVariable Long companyId, Model model) {
+        Company company = companyService.getCompanyById(companyId);
+        if (company != null) {
+            model.addAttribute("company", company);
+        }
+        else
+        {
+            return new ModelAndView("errorPage");
+        }
+        model.addAttribute("content", "company");
+        model.addAttribute("pageTitle", "Companies");
+        List<Company> companies = companyService.getCompanies();
+        model.addAttribute("companyList", companies);
+        return new ModelAndView("layout");
+    }
+
     @DeleteMapping("/delete/{companyId}")
     public ModelAndView deleteCompany(@PathVariable Long companyId, RedirectAttributes redirectAttributes, Model model) {
         try {
