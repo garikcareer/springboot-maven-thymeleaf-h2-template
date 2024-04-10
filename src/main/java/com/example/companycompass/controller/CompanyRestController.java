@@ -3,7 +3,9 @@ package com.example.companycompass.controller;
 import com.example.companycompass.model.Company;
 import com.example.companycompass.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -16,6 +18,11 @@ public class CompanyRestController {
     @PostMapping(path = "/add")
     public @ResponseBody Company addCompany(@RequestBody Company company) {
         return companyService.saveCompany(company);
+    }
+
+    @GetMapping("/get/{companyId}")
+    public @ResponseBody Company getCompany(@PathVariable Long companyId, Model model) {
+        return companyService.getCompanyById(companyId);
     }
 
     @GetMapping(path = "/all")
