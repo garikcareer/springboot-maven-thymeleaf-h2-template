@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -26,16 +27,18 @@ public class CompanyServiceImpl implements CompanyService{
 
     @Override
     public Company updateCompany(Company company, Long companyId) {
-        if(companyRepository.findById(companyId).isPresent()){
-            Company companyToUpdate = companyRepository.findById(companyId).get();
-            if(Objects.nonNull(company.getName()) && !"".equalsIgnoreCase(company.getName())){
+        Optional<Company> optionalCompanyToUpdate = companyRepository.findById(companyId);
+        if (optionalCompanyToUpdate.isPresent()) {
+            Company companyToUpdate = optionalCompanyToUpdate.get();
+            if (Objects.nonNull(company.getName()) && !"".equalsIgnoreCase(company.getName())) {
                 companyToUpdate.setName(company.getName());
             }
-            if(Objects.nonNull(company.getLocation()) && !"".equalsIgnoreCase(company.getLocation())){
+            if (Objects.nonNull(company.getLocation()) && !"".equalsIgnoreCase(company.getLocation())) {
                 companyToUpdate.setLocation(company.getLocation());
             }
+            return companyRepository.save(companyToUpdate);
         }
-        return companyRepository.save(company);
+        return null;
     }
 
     @Override
@@ -52,6 +55,10 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public Company getCompanyById(Long id) {
         Optional<Company> companyOptional = companyRepository.findById(id);
-        return companyOptional.orElse(null);
+        if (companyOptional.isPresent()) {
+            return companyOptional.get();
+        } else {
+            throw new NoSuchElementException("No company found with the provided id");
+        }
     }
 }

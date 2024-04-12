@@ -13,6 +13,15 @@ public class Company {
     @Column(name = "location")
     private String location;
 
+    public Company(){
+
+    }
+
+    public Company(String name, String location){
+        this.name = name;
+        this.location = location;
+    }
+
     public long getId() {
         return id;
     }

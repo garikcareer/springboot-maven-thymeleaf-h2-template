@@ -19,11 +19,17 @@ public class CompanyController {
 
     @GetMapping("")
     @ModelAttribute
-    public ModelAndView company(Model model) {
-        List<Company> companies = companyService.getCompanies();
+    public ModelAndView getAllCompanies(Model model) {
         model.addAttribute("content", "company");
         model.addAttribute("pageTitle", "Companies");
-        model.addAttribute("companyList", companies);
+        model.addAttribute("companyList", companyService.getCompanies());
+        return new ModelAndView("layout");
+    }
+
+    @GetMapping("/create")
+    public ModelAndView createCompany(Model model) {
+        model.addAttribute("content", "company");
+        model.addAttribute("pageTitle", "Create Company");
         return new ModelAndView("layout");
     }
 
@@ -46,11 +52,11 @@ public class CompanyController {
         return new ModelAndView("layout");
     }
 
-    @GetMapping("/edit/{companyId}")
-    public ModelAndView editCompany(@PathVariable Long companyId, RedirectAttributes redirectAttributes, Model model) {
-        Company company = new Company();
+    @PostMapping("/edit/{companyId}")
+    public ModelAndView editCompany(@PathVariable Long companyId, @RequestParam String name, @RequestParam String location, RedirectAttributes redirectAttributes, Model model) {
         try {
             if (companyService.existsById(companyId)) {
+                Company company = new Company(name, location);
                 companyService.updateCompany(company, companyId);
                 redirectAttributes.addFlashAttribute("successMessage", "Company was edited successfully");
             } else {

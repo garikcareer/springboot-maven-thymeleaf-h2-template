@@ -22,7 +22,6 @@
                             <button class="btn btn-primary edit-company-btn" data-toggle="modal"
                                     data-target="#editCompanyModal">Edit
                             </button>
-                            <!--                            <button th:onclick="|editCompany('${company.id}')|">Edit</button>-->
                             <button class="btn btn-danger" th:onclick="|deleteCompany('${company.id}')|">Delete</button>
                         </td>
                     </tr>
@@ -40,24 +39,28 @@
                             <h5 class="modal-title" id="editCompanyModalLabel">Edit Company</h5>
                         </div>
                         <div class="modal-body">
-                            <!-- Form to edit company information -->
                             <form id="editCompanyForm">
                                 <div class="form-group">
                                     <label for="companyName">Company Name</label>
-                                    <input type="text" class="form-control" id="companyName">
+                                    <input type="text" class="form-control" id="companyName"
+                                           th:text="${company != null ? company.name : ''}">
                                 </div>
                                 <div class="form-group">
                                     <label for="companyLocation">Company Location</label>
-                                    <input type="text" class="form-control" id="companyLocation">
+                                    <input type="text" class="form-control" id="companyLocation"
+                                           th:text="${company != null ? company.location : ''}">
                                 </div>
                                 <input type="hidden" id="companyId">
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-target="#editCompanyModal"
-                                    th:onClick="|closeModal()|">Close
+                                    th:onClick="|closeModal()|">
+                                Close
                             </button>
-                            <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
+                            <button type="button" class="btn btn-primary" id="saveChangesBtn">
+                                Save changes
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -70,39 +73,55 @@
     $(document).ready(function () {
         // Event handler for clicking the "Edit" button
         $('.edit-company-btn').click(function () {
-            // Extract company ID from the data attribute
-            var companyId = $(this).data('company-id');
-            fetchCompanyInfo(companyId);
-            $('#editCompanyModal').modal('show');
+            $('.edit-company-btn').click(function () {
+                var companyId = $(this).closest('tr').children('th').text();
+                fetchCompanyInfo(companyId);
+                $('#editCompanyModal').modal('show');
+            });
         });
 
         // Event handler for submitting the form in the modal
         $('#saveChangesBtn').click(function () {
-            // Handle form submission (you need to implement this)
-            // Example: var companyId = $('#companyId').val();
-            // Example: var newName = $('#companyName').val();
-            // Example: var newLocation = $('#companyLocation').val();
-            // Example: $.post('/update-company', { id: companyId, name: newName, location: newLocation }, function(response) { ... });
+            var companyName = $('#companyName').val();
+            var companyLocation = $('#companyLocation').val();
+            var companyId = $('#companyId').val();
+
+            $.ajax({
+                url: 'company/edit/' + companyId,
+                method: 'POST',
+                data: {
+                    name: companyName,
+                    location: companyLocation
+                },
+                success: function () {
+                    console.log('Successfully updated company information');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Failed to update company information:', error);
+                }
+            });
         });
     });
 
-    function closeModal(){
-        $('#editCompanyModal').modal('hide');
-    }
-
     function fetchCompanyInfo(companyId) {
         $.ajax({
-            url: 'web/company/get/' + companyId, // Replace with your backend endpoint to fetch company info
+            url: '../api/company/get/' + companyId,
             method: 'GET',
-            success: function (response) {
-                $('#companyName').val(response.name);
-                $('#companyLocation').val(response.location);
+            success: function (companyResponse) {
+                $('#companyName').val(companyResponse.name);
+                $('#companyLocation').val(companyResponse.location);
                 $('#companyId').val(companyId);
+                console.log('Successfully fetched company with id:', companyId, 'data:', companyResponse);
             },
             error: function (xhr, status, error) {
                 console.error('Failed to fetch company information:', error);
             }
         });
+    }
+
+    function closeModal() {
+        $('#editCompanyModal').modal('hide');
     }
 
     function deleteCompany(companyId) {
@@ -111,10 +130,11 @@
                 url: '/web/company/delete/' + companyId,
                 type: 'DELETE',
                 success: function () {
+                    console.log('Successfully deleted company with id:', companyId);
                     location.reload();
                 },
                 error: function (xhr, status, error) {
-                    console.error('Failed to delete company:', error);
+                    console.error('Failed to delete company with id:',companyId, 'error:', error);
                 }
             });
         }
