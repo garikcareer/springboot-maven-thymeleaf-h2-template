@@ -25,7 +25,7 @@ public class CompanyRestController {
         return companyService.getCompanyById(companyId);
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/get/all")
     public @ResponseBody List<Company> getCompanies() {
         return companyService.getCompanies();
     }
