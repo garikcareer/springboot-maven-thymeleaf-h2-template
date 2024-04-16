@@ -1,7 +1,7 @@
-package com.example.companycompass.service;
+package main.java.com.example.companycompass.service;
 
-import com.example.companycompass.model.Company;
-import com.example.companycompass.repository.CompanyRepository;
+import main.java.com.example.companycompass.model.Company;
+import main.java.com.example.companycompass.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +11,15 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class CompanyServiceImpl implements CompanyService{
+public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
     @Override
     public Company saveCompany(Company company) {
+        if (companyRepository.existsById(company.getId())) {
+            throw new IllegalArgumentException("Cannot add the company. Company already exists with this id.");
+        }
         return companyRepository.save(company);
     }
 
@@ -47,7 +50,7 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public boolean existsById(Long companyId){
+    public boolean existsById(Long companyId) {
         Optional<Company> companyOptional = companyRepository.findById(companyId);
         return companyOptional.isPresent();
     }

@@ -1,4 +1,4 @@
-package com.example.companycompass.model;
+package main.java.com.example.companycompass.model;
 
 import jakarta.persistence.*;
 
@@ -6,27 +6,27 @@ import jakarta.persistence.*;
 @Table(name = "company")
 public class Company {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "location")
     private String location;
 
-    public Company(){
+    public Company() {
 
     }
 
-    public Company(String name, String location){
+    public Company(String name, String location) {
         this.name = name;
         this.location = location;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

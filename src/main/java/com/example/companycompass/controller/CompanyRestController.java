@@ -1,13 +1,14 @@
-package com.example.companycompass.controller;
+package main.java.com.example.companycompass.controller;
 
-import com.example.companycompass.model.Company;
-import com.example.companycompass.service.CompanyService;
+import main.java.com.example.companycompass.model.Company;
+import main.java.com.example.companycompass.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/company")
@@ -16,30 +17,50 @@ public class CompanyRestController {
     private CompanyService companyService;
 
     @PostMapping(path = "/add")
-    public @ResponseBody Company addCompany(@RequestBody Company company) {
-        return companyService.saveCompany(company);
+    public ResponseEntity<Map<String, Object>> addCompany(@RequestBody Company company) {
+        Company newCompany = companyService.saveCompany(company);
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.OK.value());
+        response.put("message", newCompany + " was added successfully");
+        response.put("timestamp", System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/get/{companyId}")
-    public @ResponseBody Company getCompany(@PathVariable Long companyId, Model model) {
-        return companyService.getCompanyById(companyId);
+    @GetMapping("/get")
+    public ResponseEntity<Map<String, Object>> getCompany(@RequestParam Long id) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.OK.value());
+        response.put("message", companyService.getCompanyById(id));
+        response.put("timestamp", System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping(path = "/get/all")
-    public @ResponseBody List<Company> getCompanies() {
-        return companyService.getCompanies();
+    public ResponseEntity<Map<String, Object>> getCompanies() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.OK.value());
+        response.put("message", companyService.getCompanies());
+        response.put("timestamp", System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping(path = "/update/{id}")
-    public String updateCompany(@RequestBody Company company,
-                                @PathVariable("id") Long companyId) {
-        Company updatedCompany = companyService.updateCompany(company, companyId);
-        return "Company with ID (" + companyId + ") updated successfully with values: " + updatedCompany;
+    @PutMapping(path = "/update")
+    public ResponseEntity<Map<String, Object>> updateCompany(@RequestBody Company company, @RequestParam Long id) {
+        Company updatedCompany = companyService.updateCompany(company, id);
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.OK.value());
+        response.put("message", "Company with ID (" + id + ") updated successfully with values: " + updatedCompany);
+        response.put("timestamp", System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
-    public String deleteCompanyById(@PathVariable("id") Long companyId) {
-        companyService.deleteCompanyById(companyId);
-        return "Company with ID (" + companyId + ") deleted successfully.";
+    @DeleteMapping(path = "/delete")
+    public ResponseEntity<Map<String, Object>> deleteCompanyById(@RequestParam Long id) {
+        companyService.deleteCompanyById(id);
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.OK.value());
+        response.put("message", "Company with ID (" + id + ") deleted successfully");
+        response.put("timestamp", System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
