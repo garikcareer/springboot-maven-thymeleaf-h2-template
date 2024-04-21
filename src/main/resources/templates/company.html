@@ -106,8 +106,9 @@
 
     function fetchCompanyInfo(companyId) {
         $.ajax({
-            url: '../api/company/get/' + companyId,
-            method: 'GET',
+            url: '../api/company/get',
+            type: 'GET',
+            data: { companyId: companyId },
             success: function (companyResponse) {
                 $('#companyName').val(companyResponse.name);
                 $('#companyLocation').val(companyResponse.location);
