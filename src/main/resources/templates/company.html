@@ -104,16 +104,17 @@
         });
     });
 
-    function fetchCompanyInfo(companyId) {
+    function fetchCompanyInfo(id) {
         $.ajax({
             url: '../api/company/get',
-            type: 'GET',
-            data: { companyId: companyId },
+            type: 'get',
+            data: { id: id },
+            contentType: 'application/json; charset=utf-8',
             success: function (companyResponse) {
-                $('#companyName').val(companyResponse.name);
-                $('#companyLocation').val(companyResponse.location);
-                $('#companyId').val(companyId);
-                console.log('Successfully fetched company with id:', companyId, 'data:', companyResponse);
+                $('#companyName').val(companyResponse.message.name);
+                $('#companyLocation').val(companyResponse.message.location);
+                $('#editCompanyModalLabel').val(id);
+                console.log('Successfully fetched company with id:', id, 'data:', companyResponse);
             },
             error: function (xhr, status, error) {
                 console.error('Failed to fetch company information:', error);
