@@ -1,4 +1,4 @@
-package main.java.com.example.companycompass.controller;
+package main.java.com.example.companycompass.controllers;
 
 import main.java.com.example.companycompass.model.Company;
 import main.java.com.example.companycompass.service.CompanyService;
