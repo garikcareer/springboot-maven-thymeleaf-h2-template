@@ -4,21 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.3</version>
-    </parent>
-
-    <!--	Project Details	-->
     <name>spring-boot-example</name>
     <artifactId>company-compass</artifactId>
     <description>An example project with spring boot</description>
+    <version>0.0.1a</version>
 
     <!--	General Properties	-->
     <properties>
-        <java.version>21</java.version>
+        <java.version>22</java.version>
         <flyway.version>10.10.0</flyway.version>
         <selenium.version>4.18.1</selenium.version>
         <mysql.connector.version>8.3.0</mysql.connector.version>
@@ -29,16 +22,16 @@
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.3</version>
+    </parent>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>snakeyaml</artifactId>
-                    <groupId>org.yaml</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
