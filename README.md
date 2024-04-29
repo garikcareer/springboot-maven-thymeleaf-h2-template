@@ -10,12 +10,12 @@
 - [License](#license)
 
 ## Introduction
-CompanyCompass is a web application developed using Java with Spring Boot framework, offering a robust and scalable solution for managing company information. The frontend is built using Thymeleaf and Bootstrap, providing a responsive and user-friendly interface. CompanyCompass allows users to view, add for priveleged users to edit, and delete company details, providing a centralized platform for easy access and management of company data.
+CompanyCompass is a web application developed using Java with Spring Boot framework, offering a robust and scalable solution for managing company information. The frontend is built using Thymeleaf and Bootstrap, providing a responsive and user-friendly interface. CompanyCompass allows users to view, add for privileged users to edit, and delete company details, providing a centralized platform for easy access and management of company data.
 
-## Features 
+## Features
 Spring boot web with thymeleaf, jpa, and test. Flyway database with MySQL to store the data. 
 
-## Technologies Used 
+## Technologies Used
 - **Languages**: Java, JavaScript and CSS
 - **Framework**: Spring Boot
 - **Database**: MySQL
@@ -23,8 +23,8 @@ Spring boot web with thymeleaf, jpa, and test. Flyway database with MySQL to sto
 
 ## Installation
 #### Ensure all maven modules are installed and the project is fully indexed before executing.
-#### Use latest JDK version (JDK 21) for the project.
-#### Ensure warehousedb database is created on your localhost
+#### Use latest JDK version (JDK 22) for the project.
+#### Ensure companycompassdb database is created on your localhost
 
 ## Usage
 To execute the CompanyCompass example application, you need to run a java file named Application.java

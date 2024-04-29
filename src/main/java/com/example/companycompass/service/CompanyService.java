@@ -1,6 +1,6 @@
-package main.java.com.example.companycompass.service;
+package com.example.companycompass.service;
 
-import main.java.com.example.companycompass.model.Company;
+import com.example.companycompass.model.Company;
 
 import java.util.List;
 

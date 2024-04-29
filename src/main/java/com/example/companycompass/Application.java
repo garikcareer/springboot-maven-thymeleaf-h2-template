@@ -1,4 +1,4 @@
-package main.java.com.example.companycompass;
+package com.example.companycompass;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

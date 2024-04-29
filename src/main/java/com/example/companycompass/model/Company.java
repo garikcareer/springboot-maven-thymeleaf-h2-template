@@ -1,4 +1,4 @@
-package main.java.com.example.companycompass.model;
+package com.example.companycompass.model;
 
 import jakarta.persistence.*;
 

@@ -1,7 +1,7 @@
-package main.java.com.example.companycompass.controllers;
+package com.example.companycompass.controllers;
 
-import main.java.com.example.companycompass.model.Company;
-import main.java.com.example.companycompass.service.CompanyService;
+import com.example.companycompass.model.Company;
+import com.example.companycompass.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

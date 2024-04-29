@@ -1,7 +1,7 @@
-package main.java.com.example.companycompass.service;
+package com.example.companycompass.service;
 
-import main.java.com.example.companycompass.model.Company;
-import main.java.com.example.companycompass.repository.CompanyRepository;
+import com.example.companycompass.model.Company;
+import com.example.companycompass.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
