@@ -20,7 +20,7 @@ public class CompanyRestController {
     @PostMapping(path = "/add",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> addCompany(@RequestBody Company company) {
+    public ResponseEntity<?> addCompany(@RequestBody Company company) {
         Company newCompany = companyService.saveCompany(company);
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
@@ -32,7 +32,7 @@ public class CompanyRestController {
     @GetMapping(path = "/get",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> getCompany(@RequestParam("id") Long id) {
+    public ResponseEntity<?> getCompany(@RequestParam("id") Long id) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
         response.put("message", companyService.getCompanyById(id));
@@ -43,7 +43,7 @@ public class CompanyRestController {
     @GetMapping(path = "/get/all",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> getCompanies() {
+    public ResponseEntity<?> getCompanies() {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
         response.put("message", companyService.getCompanies());
@@ -54,7 +54,7 @@ public class CompanyRestController {
     @PutMapping(path = "/update",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> updateCompany(@RequestBody Company company, @RequestParam Long id) {
+    public ResponseEntity<?> updateCompany(@RequestBody Company company, @RequestParam Long id) {
         Company updatedCompany = companyService.updateCompany(company, id);
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
@@ -66,7 +66,7 @@ public class CompanyRestController {
     @DeleteMapping(path = "/delete",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> deleteCompanyById(@RequestParam("id") Long id) {
+    public ResponseEntity<?> deleteCompanyById(@RequestParam("id") Long id) {
         companyService.deleteCompanyById(id);
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());

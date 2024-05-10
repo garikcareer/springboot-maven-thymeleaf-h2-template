@@ -31,7 +31,7 @@ To execute the CompanyCompass example application, you need to run a java file n
 (Path location from source project: **com/example/companycompass/Application.java**)
 
 ## Contributing
-For contributing or using the software please contact me and feel free to make a change.
+For contributing or using the software please contact me to make a change.
 
 ## References
 * [Maven](https://maven.apache.org/)

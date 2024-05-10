@@ -15,6 +15,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
+    // Create
     @Override
     public Company saveCompany(Company company) {
         if (companyRepository.existsById(company.getId())) {
@@ -23,11 +24,23 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepository.save(company);
     }
 
+    // Read
+    @Override
+    public Company getCompanyById(Long id) {
+        Optional<Company> companyOptional = companyRepository.findById(id);
+        if (companyOptional.isPresent()) {
+            return companyOptional.get();
+        } else {
+            throw new NoSuchElementException("No company found with the provided id");
+        }
+    }
+
     @Override
     public List<Company> getCompanies() {
         return (List<Company>) companyRepository.findAll();
     }
 
+    // Update
     @Override
     public Company updateCompany(Company company, Long companyId) {
         Optional<Company> optionalCompanyToUpdate = companyRepository.findById(companyId);
@@ -44,6 +57,7 @@ public class CompanyServiceImpl implements CompanyService {
         return null;
     }
 
+    // Delete
     @Override
     public void deleteCompanyById(Long companyId) {
         companyRepository.deleteById(companyId);
@@ -53,15 +67,5 @@ public class CompanyServiceImpl implements CompanyService {
     public boolean existsById(Long companyId) {
         Optional<Company> companyOptional = companyRepository.findById(companyId);
         return companyOptional.isPresent();
-    }
-
-    @Override
-    public Company getCompanyById(Long id) {
-        Optional<Company> companyOptional = companyRepository.findById(id);
-        if (companyOptional.isPresent()) {
-            return companyOptional.get();
-        } else {
-            throw new NoSuchElementException("No company found with the provided id");
-        }
     }
 }
