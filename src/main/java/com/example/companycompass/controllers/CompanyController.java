@@ -26,10 +26,10 @@ public class CompanyController {
         return new ModelAndView("layout");
     }
 
-    @GetMapping("/create")
+    @GetMapping("/add")
     public ModelAndView createCompany(Model model) {
-        model.addAttribute("content", "company");
-        model.addAttribute("pageTitle", "Create Company");
+        model.addAttribute("content", "addcompany");
+        model.addAttribute("pageTitle", "Add Company");
         return new ModelAndView("layout");
     }
 
