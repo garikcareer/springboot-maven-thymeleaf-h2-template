@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +22,10 @@ public class CompanyRestController {
     @PostMapping(path = "/add",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addCompany(@RequestBody Company company) {
-        Company newCompany = companyService.saveCompany(company);
+    public ResponseEntity<?> createCompany(@RequestBody Company company) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", newCompany + " was added successfully");
+        response.put("message", companyService.saveCompany(company) + " was added successfully");
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

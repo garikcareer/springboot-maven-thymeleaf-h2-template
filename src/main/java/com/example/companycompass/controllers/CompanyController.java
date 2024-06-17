@@ -1,6 +1,7 @@
 package com.example.companycompass.controllers;
 
 import com.example.companycompass.model.Company;
+import com.example.companycompass.repository.CompanyRepository;
 import com.example.companycompass.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import java.util.List;
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private CompanyRepository companyRepository;
 
     @GetMapping("")
     @ModelAttribute
@@ -23,13 +26,6 @@ public class CompanyController {
         model.addAttribute("content", "company");
         model.addAttribute("pageTitle", "Companies");
         model.addAttribute("companyList", companyService.getCompanies());
-        return new ModelAndView("layout");
-    }
-
-    @GetMapping("/add")
-    public ModelAndView createCompany(Model model) {
-        model.addAttribute("content", "addcompany");
-        model.addAttribute("pageTitle", "Add Company");
         return new ModelAndView("layout");
     }
 

@@ -16,6 +16,13 @@ public class MainController {
         return new ModelAndView("layout");
     }
 
+    @GetMapping("/web/company/add")
+    public ModelAndView addCompany(Model model) {
+        model.addAttribute("content", "addcompany");
+        model.addAttribute("pageTitle", "Add Company");
+        return new ModelAndView("layout");
+    }
+
     @GetMapping("/about")
     @ModelAttribute
     public ModelAndView about(Model model) {
