@@ -18,9 +18,6 @@ public class CompanyServiceImpl implements CompanyService {
     // Create
     @Override
     public Company saveCompany(Company company) {
-        if (companyRepository.existsById(company.getId())) {
-            throw new IllegalArgumentException("Cannot add the company. Company already exists with this id.");
-        }
         return companyRepository.save(company);
     }
 

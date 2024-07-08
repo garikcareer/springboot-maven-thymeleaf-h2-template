@@ -1,7 +1,7 @@
 <body>
 <div class="container">
     <h2>Add New Company</h2>
-    <form action ="/api/company/add" method="post" class="mt-4">
+    <form class="mt-4">
         <div class="form-group">
             <label for="name">Company Name:</label>
             <input type="text" class="form-control" id="name" name="name"
@@ -12,7 +12,7 @@
             <input type="text" class="form-control" id="location" name="location"
                    placeholder="Enter location" required>
         </div>
-        <button type="submit" class="btn btn-primary add-company-btn" th:onclick="|submitForm()|">Add Company</button>
+        <button type="submit" class="btn btn-primary add-company-btn" th:onclick="'submitForm()'">Add Company</button>
     </form>
 </div>
 
@@ -28,23 +28,22 @@
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(companyData),
-            // success: function (response) {
-            //     $('#response-message')
-            //         .removeClass('alert-danger')
-            //         .addClass('alert-success')
-            //         .text('Company added successfully!')
-            //         .show();
-            //         location.reload();
-            // },
-            // error: function (xhr, status, error) {
-            //     $('#response-message')
-            //         .removeClass('alert-success')
-            //         .addClass('alert-danger')
-            //         .text('Failed to add company: ' + xhr.responseText)
-            //         .show();
-            //         location.reload();
-            // }
-            s
+            success: function (response) {
+                $('#response-message')
+                    .removeClass('alert-danger')
+                    .addClass('alert-success')
+                    .text('Company added successfully!')
+                    .show();
+                    location.reload();
+            },
+            error: function (xhr, status, error) {
+                $('#response-message')
+                    .removeClass('alert-success')
+                    .addClass('alert-danger')
+                    .text('Failed to add company: ' + xhr.responseText)
+                    .show();
+                    location.reload();
+            }
         });
     }
 </script>
