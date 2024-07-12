@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,11 +65,17 @@ public class CompanyRestController {
     @DeleteMapping(path = "/delete",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteCompanyById(@RequestParam("id") Long id) {
-        companyService.deleteCompanyById(id);
+    public ResponseEntity<?> deleteCompanyById(@RequestBody Map<String, Object> company) {
+
+//        Long id = Long.parseLong(company.get("companyId"));
+//        companyService.deleteCompanyById(id);
+        for (Map.Entry<String, Object> entry : company.entrySet()) {
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        }
+
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", "Company with ID (" + id + ") deleted successfully");
+//        response.put("message", "Company with ID (" + id + ") deleted successfully");
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

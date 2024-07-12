@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="company : ${companyList}">
-                        <th scope="row" th:text="${company.id}"></th>
+                        <th scope="row" id="companyId" th:text="${company.id}"></th>
                         <td th:text="${company.name}"></td>
                         <td th:text="${company.location}"></td>
                         <td>
@@ -50,7 +50,6 @@
                                     <input type="text" class="form-control" id="companyLocation"
                                            th:text="${company != null ? company.location : ''}">
                                 </div>
-                                <input type="hidden" id="companyId">
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -74,7 +73,7 @@
         // Event handler for clicking the "Edit" button
         $('.edit-company-btn').click(function () {
             $('.edit-company-btn').click(function () {
-                var companyId = $(this).closest('tr').children('th').text();
+                let companyId = $(this).closest('tr').children('th').text();
                 fetchCompanyInfo(companyId);
                 $('#editCompanyModal').modal('show');
             });
@@ -82,42 +81,45 @@
 
         // Event handler for submitting the form in the modal
         $('#saveChangesBtn').click(function () {
-            var companyName = $('#companyName').val();
-            var companyLocation = $('#companyLocation').val();
-            var companyId = $('#companyId').val();
+            let company = {
+                companyName: $('#companyName').val(),
+                companyLocation: $('#companyLocation').val(),
+                companyId: $('#companyId').val()
+            }
 
             $.ajax({
-                url: 'edit/' + companyId,
-                method: 'POST',
-                data: {
-                    name: companyName,
-                    location: companyLocation
-                },
-                success: function () {
-                    console.log('Successfully updated company information');
+                url: '../api/company/edit/',
+                type : 'POST',
+                data: JSON.stringify(company),
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    console.log('Successfully updated ' + response.message + ' ID Company\'s information');
                     location.reload();
                 },
-                error: function (xhr, status, error) {
+                error: function (response, status, error) {
+                    alert("Error: Company was not edited.")
                     console.error('Failed to update company information:', error);
                 }
             });
         });
     });
 
-    function fetchCompanyInfo(id) {
+    function fetchCompanyInfo(companyId) {
         $.ajax({
             url: '../api/company/get',
-            type: 'get',
-            data: { id: id },
-            contentType: 'application/json; charset=utf-8',
-            success: function (companyResponse) {
-                $('#companyName').val(companyResponse.message.name);
-                $('#companyLocation').val(companyResponse.message.location);
-                $('#editCompanyModalLabel').val(id);
-                console.log('Successfully fetched company with id:', id, 'data:', companyResponse);
+            method : 'GET',
+            constructor: {
+                id: companyId
             },
-            error: function (xhr, status, error) {
-                console.error('Failed to fetch company information:', error);
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                $('#companyName').val(response.message.name);
+                $('#companyLocation').val(response.message.location);
+                $('#editCompanyModalLabel').val(response.message.companyId);
+                console.log('Successfully fetched company with id: ', companyId, 'data: ', this.data);
+            },
+            error: function (response) {
+                console.error('Failed to fetch company with id: ', companyId, 'data: ', this.data);
             }
         });
     }
@@ -128,15 +130,24 @@
 
     function deleteCompany(companyId) {
         if (confirm('Are you sure you want to delete this company?')) {
+            let company = {
+                companyName: $('#companyName').val(),
+                companyLocation: $('#companyLocation').val(),
+                companyId: $('#companyId').val()
+            }
+
             $.ajax({
-                url: '/web/company/delete/' + companyId,
-                type: 'DELETE',
-                success: function () {
-                    console.log('Successfully deleted company with id:', companyId);
+                url: '../api/company/delete',
+                method: 'DELETE',
+                data: JSON.stringify(company),
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    console.log('Successfully deleted company with id:', response.message.companyId);
                     location.reload();
                 },
-                error: function (xhr, status, error) {
-                    console.error('Failed to delete company with id:',companyId, 'error:', error);
+                error: function (response, status, error) {
+                    alert("Error: Company was not deleted.")
+                    console.error('Failed to delete company with id:',response.message.companyId, 'error:', error);
                 }
             });
         }
