@@ -5,13 +5,13 @@ import com.example.companycompass.model.Company;
 import java.util.List;
 
 public interface CompanyService {
-    Company saveCompany(Company company);
+    void addCompany(Company company);
 
     Company getCompanyById(Long companyId);
 
     List<Company> getCompanies();
 
-    Company updateCompany(Company company);
+    void updateCompany(Long companyId, Company company);
 
     void deleteCompanyById(Long companyId);
 }

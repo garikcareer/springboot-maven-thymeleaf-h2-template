@@ -40,6 +40,7 @@
                         </div>
                         <div class="modal-body">
                             <form id="editCompanyForm">
+                                <input type="hidden" id="editCompanyId">
                                 <div class="form-group">
                                     <label for="editCompanyName">Company Name</label>
                                     <input type="text" class="form-control" id="editCompanyName"
@@ -50,7 +51,6 @@
                                     <input type="text" class="form-control" id="editCompanyLocation"
                                            th:text="${company != null ? company.location : ''}">
                                 </div>
-                                <input type="hidden" id="editCompanyId">
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -58,7 +58,7 @@
                                     th:onClick="|closeModal()|">
                                 Close
                             </button>
-                            <button type="button" class="btn btn-primary" id="saveChangesBtn" >
+                            <button type="button" class="btn btn-primary save-company-btn">
                                 Save changes
                             </button>
                         </div>
@@ -84,10 +84,10 @@
         });
 
         // Event handler for submitting the form in the modal
-        $('#saveChangesBtn').click(function () {
-            const companyId = $('#editCompanyId').text();
-            const companyName = $('#editCompanyName').text();
-            const companyLocation = $('#editCompanyLocation').text();
+        $('.save-company-btn').click(function () {
+            const companyId = $('#editCompanyId').val();
+            const companyName = $('#editCompanyName').val();
+            const companyLocation = $('#editCompanyLocation').val();
             console.log("Calling update company with datas: ", companyId, companyName, companyLocation)
             updateCompany(companyId, companyName, companyLocation);
         });
@@ -116,9 +116,8 @@
     }
 
     function updateCompany(companyId, companyName, companyLocation) {
-        console.log("PRE AJAX update company with datas: ", companyId, companyName, companyLocation)
         $.ajax({
-            url: '../api/company/update',
+            url: '../api/company/update/' + companyId,
             method: 'PUT',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({

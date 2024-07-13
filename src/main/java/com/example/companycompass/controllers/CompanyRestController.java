@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,9 +23,11 @@ public class CompanyRestController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createCompany(@RequestBody Company company) {
+        companyService.addCompany(company);
+
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", companyService.saveCompany(company) + " was added successfully");
+        response.put("message", company.getId() + " was added successfully");
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -33,9 +36,11 @@ public class CompanyRestController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getCompany(@RequestParam("companyId") Long companyId) {
+        Company company = companyService.getCompanyById(companyId);
+
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", companyService.getCompanyById(companyId));
+        response.put("message", company);
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -44,22 +49,25 @@ public class CompanyRestController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getCompanies() {
+        List<Company> listCompanies = companyService.getCompanies();
+
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", companyService.getCompanies());
+        response.put("message", listCompanies);
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping(path = "/update",
+    @PutMapping(path = "/update/{companyId}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateCompany(@RequestBody Company company) {
-        Company updatedCompany = companyService.updateCompany(company);
+    public ResponseEntity<?> updateCompany(@PathVariable Long companyId, @RequestBody Company company) {
+        company.setId(companyId);
+        companyService.updateCompany(companyId, company);
 
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", "Company with ID (" + company.getId() + ") updated successfully with values: " + updatedCompany);
+        response.put("message", "Company with ID (" + company.getId() + ") updated successfully with values: " + company);
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

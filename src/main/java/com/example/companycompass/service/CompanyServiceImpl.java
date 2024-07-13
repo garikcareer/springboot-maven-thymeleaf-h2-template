@@ -17,19 +17,14 @@ public class CompanyServiceImpl implements CompanyService {
 
     // Create
     @Override
-    public Company saveCompany(Company company) {
-        return companyRepository.save(company);
+    public void addCompany(Company company) {
+        companyRepository.save(company);
     }
 
     // Read
     @Override
     public Company getCompanyById(Long id) {
-        Optional<Company> companyOptional = companyRepository.findById(id);
-        if (companyOptional.isPresent()) {
-            return companyOptional.get();
-        } else {
-            throw new NoSuchElementException("No company found with the provided id");
-        }
+        return companyRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Company not found"));
     }
 
     @Override
@@ -39,19 +34,12 @@ public class CompanyServiceImpl implements CompanyService {
 
     // Update
     @Override
-    public Company updateCompany(Company company) {
-        Optional<Company> optionalCompanyToUpdate = companyRepository.findById(company.getId());
-        if (optionalCompanyToUpdate.isPresent()) {
-            Company companyToUpdate = optionalCompanyToUpdate.get();
-            if (Objects.nonNull(company.getName()) && !"".equalsIgnoreCase(company.getName())) {
-                companyToUpdate.setName(company.getName());
-            }
-            if (Objects.nonNull(company.getLocation()) && !"".equalsIgnoreCase(company.getLocation())) {
-                companyToUpdate.setLocation(company.getLocation());
-            }
-            return companyRepository.save(companyToUpdate);
-        }
-        return null;
+    public void updateCompany(Long companyId, Company company) {
+        Company existingCompany = companyRepository.findById(companyId).orElseThrow(() ->
+                new NoSuchElementException("Company not found with id: " + companyId));
+        existingCompany.setName(company.getName());
+        existingCompany.setLocation(company.getLocation());
+        companyRepository.save(existingCompany);
     }
 
     // Delete
