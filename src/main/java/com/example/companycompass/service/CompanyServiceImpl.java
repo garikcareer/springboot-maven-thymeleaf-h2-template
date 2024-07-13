@@ -39,8 +39,8 @@ public class CompanyServiceImpl implements CompanyService {
 
     // Update
     @Override
-    public Company updateCompany(Company company, Long companyId) {
-        Optional<Company> optionalCompanyToUpdate = companyRepository.findById(companyId);
+    public Company updateCompany(Company company) {
+        Optional<Company> optionalCompanyToUpdate = companyRepository.findById(company.getId());
         if (optionalCompanyToUpdate.isPresent()) {
             Company companyToUpdate = optionalCompanyToUpdate.get();
             if (Objects.nonNull(company.getName()) && !"".equalsIgnoreCase(company.getName())) {
@@ -58,11 +58,5 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void deleteCompanyById(Long companyId) {
         companyRepository.deleteById(companyId);
-    }
-
-    @Override
-    public boolean existsById(Long companyId) {
-        Optional<Company> companyOptional = companyRepository.findById(companyId);
-        return companyOptional.isPresent();
     }
 }

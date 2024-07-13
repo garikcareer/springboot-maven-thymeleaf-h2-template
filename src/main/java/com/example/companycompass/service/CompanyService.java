@@ -11,9 +11,7 @@ public interface CompanyService {
 
     List<Company> getCompanies();
 
-    Company updateCompany(Company company, Long companyId);
+    Company updateCompany(Company company);
 
     void deleteCompanyById(Long companyId);
-
-    boolean existsById(Long companyId);
 }
