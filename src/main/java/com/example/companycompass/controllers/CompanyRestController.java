@@ -8,12 +8,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/company")
 public class CompanyRestController {
+    ObjectMapper objectMapper = new ObjectMapper();
+
     @Autowired
     private CompanyService companyService;
 
@@ -65,17 +69,10 @@ public class CompanyRestController {
     @DeleteMapping(path = "/delete",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteCompanyById(@RequestBody Map<String, Object> company) {
-
-//        Long id = Long.parseLong(company.get("companyId"));
-//        companyService.deleteCompanyById(id);
-        for (Map.Entry<String, Object> entry : company.entrySet()) {
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-        }
-
+    public ResponseEntity<?> deleteCompanyById(@RequestParam String id) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-//        response.put("message", "Company with ID (" + id + ") deleted successfully");
+        response.put("message", "Company with ID (" + id + ") deleted successfully");
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
