@@ -22,7 +22,7 @@ public class CompanyRestController {
     @PostMapping(path = "/add",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createCompany(@RequestBody Company company) {
+    public ResponseEntity<?> addCompany(@RequestBody Company company) {
         companyService.addCompany(company);
 
         Map<String, Object> response = new HashMap<>();
