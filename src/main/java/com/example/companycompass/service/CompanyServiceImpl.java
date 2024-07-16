@@ -21,8 +21,8 @@ public class CompanyServiceImpl implements CompanyService {
 
     // Read
     @Override
-    public Company getCompanyById(Long id) {
-        return companyRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Company not found"));
+    public Company getCompanyById(Long companyId) {
+        return companyRepository.findById(companyId).orElseThrow(() -> new NoSuchElementException("Company not found"));
     }
 
     @Override
