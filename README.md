@@ -38,7 +38,7 @@ To execute the CompanyCompass example application, you need to run a java file n
 ### CompanyCompass Homepage
 ![Alt text](github/screenshots/CompanyCompass_Homepage.png "CompanyCompass Homepage")
 ### CompanyCompass View Companies Page
-![Alt text](github/screenshots/CompanyCompass_Homepage.png "CompanyCompass View Companies Page")
+![Alt text](github/screenshots/CompanyCompass_ViewCompanies.png "CompanyCompass View Companies Page")
 
 ## Contributing
 For contributing or using the software, please contact me to make a change.
