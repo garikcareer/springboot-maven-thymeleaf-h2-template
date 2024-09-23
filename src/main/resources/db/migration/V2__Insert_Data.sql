@@ -1,4 +1,4 @@
-INSERT IGNORE INTO company (name, location)
+INSERT INTO company (name, location)
 VALUES ('Company1', 'New York'),
        ('Company2', 'Los Angeles'),
        ('Company3', 'Chicago'),
