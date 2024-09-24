@@ -6,7 +6,6 @@
 - [Usage](#usage)
 - [References](#references)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 CompanyCompass is a web application developed using Java with a Spring Boot framework,
@@ -48,6 +47,3 @@ For contributing or using the software, please contact me to make a change.
 * [Thymeleaf](https://www.thymeleaf.org/)
 * [Docker](https://docs.docker.com/)
 * [Bootstrap](https://getbootstrap.com/)
-
-## License
-[MIT License](https://www.mit.edu/~amini/LICENSE.md)
