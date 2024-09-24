@@ -1,4 +1,4 @@
-# CompanyCompass
+# Company Compass - Example Web Application
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
@@ -16,7 +16,7 @@ Spring boot web with thymeleaf, jpa, and test. Flyway database with MySQL to sto
 ## Technologies Used
 - **Languages**: Java, JavaScript and CSS
 - **Framework**: Spring Boot
-- **Database**: MySQL
+- **Database**: H2
 - **Others**: Thymeleaf and Flyway
 
 ## Usage
