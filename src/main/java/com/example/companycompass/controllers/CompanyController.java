@@ -1,6 +1,5 @@
 package com.example.companycompass.controllers;
 
-import com.example.companycompass.repository.CompanyRepository;
 import com.example.companycompass.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
-    @Autowired
-    private CompanyRepository companyRepository;
 
     @GetMapping("")
     @ModelAttribute

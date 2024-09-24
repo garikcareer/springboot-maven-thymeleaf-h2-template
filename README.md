@@ -3,7 +3,6 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Installation](#installation)
 - [Usage](#usage)
 - [References](#references)
 - [Contributing](#contributing)
@@ -25,13 +24,11 @@ Spring boot web with thymeleaf, jpa, and test. Flyway database with MySQL to sto
 - **Database**: MySQL
 - **Others**: Thymeleaf and Flyway
 
-## Installation
+## Usage
 #### Ensure all maven modules are installed and the project is fully indexed before executing.
 #### Use the latest JDK version (JDK 22) for the project.
-#### Ensure companycompassdb database is created on your localhost
 
-## Usage
-To execute the CompanyCompass example application, you need to run a java file named Application.java
+To execute an example application CompanyCompass, you need to run a java file named Application.java
 (Path location from a source project: **com/example/companycompass/Application.java**)
 
 ## Screenshots
