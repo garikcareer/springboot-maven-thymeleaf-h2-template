@@ -26,7 +26,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.3</version>
+        <version>3.3.4</version>
     </parent>
 
     <dependencies>
@@ -98,7 +98,7 @@
             <name>MIT</name>
             <url>https://www.mit.edu/~amini/LICENSE.md</url>
             <distribution>repo</distribution>
-            <comments>Contact me for use/collaboration</comments>
+            <comments>Contact me for collaboration</comments>
         </license>
     </licenses>
 </project>
