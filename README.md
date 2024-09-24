@@ -8,7 +8,7 @@
 - [Contributing](#contributing)
 
 ## Introduction
-CompanyCompass is a web application developed using Java with a Spring Boot framework,
+CompanyCompass is an example web application developed using Java with a Spring Boot framework,
 offering a robust and scalable solution for managing company information.
 The frontend is built using Thymeleaf and Bootstrap, providing a responsive and user-friendly interface.
 CompanyCompass allows users to view, add for privileged users to edit, and delete company details,
