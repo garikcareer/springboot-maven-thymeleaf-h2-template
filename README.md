@@ -1,4 +1,4 @@
-# Company Compass - Example Web Application
+# Company Compass — Example Web Application
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
