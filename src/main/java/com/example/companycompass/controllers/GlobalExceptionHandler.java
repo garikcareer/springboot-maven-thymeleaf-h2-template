@@ -10,6 +10,7 @@ import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, Object>> handleException(IllegalArgumentException e) {
         Map<String, Object> response = new HashMap<>();

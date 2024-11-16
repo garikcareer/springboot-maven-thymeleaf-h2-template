@@ -15,9 +15,12 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/api/company")
 public class CompanyRestController {
+    private final CompanyService companyService;
 
     @Autowired
-    private CompanyService companyService;
+    public CompanyRestController(CompanyService companyService) {
+        this.companyService = companyService;
+    }
 
     @PostMapping(path = "/add",
             produces = MediaType.APPLICATION_JSON_VALUE,

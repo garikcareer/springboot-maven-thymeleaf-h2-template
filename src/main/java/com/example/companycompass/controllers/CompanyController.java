@@ -10,8 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(path = "/web/company")
 public class CompanyController {
+    private final CompanyService companyService;
+
     @Autowired
-    private CompanyService companyService;
+    public CompanyController(CompanyService companyService) {
+        this.companyService = companyService;
+    }
 
     @GetMapping("")
     @ModelAttribute
