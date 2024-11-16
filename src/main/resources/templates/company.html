@@ -3,6 +3,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 class="text-center mt-5 mb-4">Company List</h1>
+            <!--/*@thymesVar id="companyList" type="java.util.List"*/-->
             <div class="container mt-4" th:if="${not #lists.isEmpty(companyList)}">
                 <table class="table mt-4 table-hover">
                     <thead class="table-dark">
@@ -71,19 +72,20 @@
 
 <script th:inline="javascript">
     $(document).ready(function () {
+        // Event handler for clicking the "Delete" button for at company rows
         $('.delete-company-btn').click(function () {
             const companyId = $(this).closest('tr').children('th').text();
             deleteCompany(companyId);
         });
 
-        // Event handler for clicking the "Edit" button
+        // Event handler for clicking the "Edit" button at company rows
         $('.edit-company-btn').click(function () {
             const companyId = $(this).closest('tr').children('th').text();
             fetchCompanyInfo(companyId);
             $('#editCompanyModal').modal('show');
         });
 
-        // Event handler for submitting the form in the modal
+        // Event handler for clicking the "Submit" button at company rows
         $('.save-company-btn').click(function () {
             const companyId = $('#editCompanyId').val();
             const companyName = $('#editCompanyName').val();
@@ -93,10 +95,7 @@
         });
     });
 
-    function closeModal() {
-        $('#editCompanyModal').modal('hide');
-    }
-
+    // Event handler for clicking the "Edit" button at company row
     function fetchCompanyInfo(companyId) {
         $.ajax({
             url: '../api/company/get',
@@ -115,6 +114,32 @@
         });
     }
 
+    // Event handler for clicking the "Delete" button at company row
+    function deleteCompany(companyId) {
+        if (confirm('Are you sure you want to delete this company?')) {
+            $.ajax({
+                url: '../api/company/delete/' + companyId,
+                type: 'DELETE',
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    console.log('Successfully deleted company with id: ', response.message.id, 'response: ', response);
+                    location.reload();
+                },
+                error: function (response) {
+                    alert("Error: Company was not deleted.")
+                    console.error('Failed to delete the company with id: ', response.message.id, 'response: ', response);
+                }
+            });
+        }
+    }
+
+    // Event handler for clicking the "Close" button at the selected company's modal
+    function closeModal() {
+        $('#editCompanyModal').modal('hide');
+    }
+    $('.close').on('click', closeModal);
+
+    // Event handler for clicking the "Edit" button at the selected company's modal
     function updateCompany(companyId, companyName, companyLocation) {
         $.ajax({
             url: '../api/company/update/' + companyId,
@@ -135,24 +160,5 @@
             }
         });
     }
-
-    function deleteCompany(companyId) {
-        if (confirm('Are you sure you want to delete this company?')) {
-            $.ajax({
-                url: '../api/company/delete/' + companyId,
-                type: 'DELETE',
-                contentType: 'application/json; charset=utf-8',
-                success: function (response) {
-                    console.log('Successfully deleted company with id: ', response.message.id, 'response: ', response);
-                    location.reload();
-                },
-                error: function (response) {
-                    alert("Error: Company was not deleted.")
-                    console.error('Failed to delete the company with id: ', response.message.id, 'response: ', response);
-                }
-            });
-        }
-    }
 </script>
 </body>
-
