@@ -2,16 +2,21 @@ package com.example.companycompass.service;
 
 import com.example.companycompass.model.Company;
 import com.example.companycompass.repository.CompanyRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
+
+    private final CompanyRepository companyRepository;
+
     @Autowired
-    private CompanyRepository companyRepository;
+    public CompanyServiceImpl(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
+    }
 
     // Create
     @Override
@@ -22,7 +27,7 @@ public class CompanyServiceImpl implements CompanyService {
     // Read
     @Override
     public Company getCompanyById(Long companyId) {
-        return companyRepository.findById(companyId).orElseThrow(() -> new NoSuchElementException("Company not found"));
+        return companyRepository.findById(companyId).orElseThrow(() -> new EntityNotFoundException("Company not found"));
     }
 
     @Override
@@ -34,7 +39,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void updateCompany(Long companyId, Company company) {
         Company existingCompany = companyRepository.findById(companyId).orElseThrow(() ->
-                new NoSuchElementException("Company not found with id: " + companyId));
+                new EntityNotFoundException("Company not found with id: " + companyId));
         existingCompany.setName(company.getName());
         existingCompany.setLocation(company.getLocation());
         companyRepository.save(existingCompany);
