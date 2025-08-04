@@ -8,7 +8,7 @@ COPY pom.xml ./
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-COPY /target/company-compass-*.jar app.jar
+COPY /target/springboot-maven-thymeleaf-h2-template-*.jar app.jar
 
 EXPOSE 8080
 #

@@ -1,7 +1,7 @@
-package com.example.companycompass.service;
+package com.companycompass.service;
 
-import com.example.companycompass.model.Company;
-import com.example.companycompass.repository.CompanyRepository;
+import com.companycompass.entity.Company;
+import com.companycompass.repository.CompanyRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

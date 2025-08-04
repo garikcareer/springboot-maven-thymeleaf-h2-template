@@ -1,7 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Spring Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="company-compass" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.companycompass.Application" />
+    <module name="springboot-maven-thymeleaf-h2-template" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.companycompass.Application" />
+    <option name="VM_PARAMETERS" value="--enable-native-access=ALL-UNNAMED" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="main.java.com.example.companycompass.*" />

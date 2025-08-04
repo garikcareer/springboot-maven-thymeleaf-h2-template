@@ -1,4 +1,4 @@
-package com.example.companycompass.controllers;
+package com.companycompass.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

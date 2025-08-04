@@ -1,6 +1,6 @@
-package com.example.companycompass.repository;
+package com.companycompass.repository;
 
-import com.example.companycompass.model.Company;
+import com.companycompass.entity.Company;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
